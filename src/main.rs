@@ -1,8 +1,9 @@
 use std::io;
 mod bubble_sort;
 mod insertion_sort;
+mod merge_sort;
+mod quick_sort;
 mod selection_sort;
-mod two_way_merge_sort;
 
 fn main() {
     // enum_example::main();
@@ -10,11 +11,12 @@ fn main() {
     println!("");
     let sort_type = get_sort_type_selection();
     println!("");
-    let input_numbers = match sort_type.as_str().trim() {
+    match sort_type.as_str().trim() {
         "1" => bubble_sort::main(&mut input_numbers),
         "2" => selection_sort::main(&mut input_numbers),
         "3" => insertion_sort::main(&mut input_numbers),
-        "4" => two_way_merge_sort::main(&mut input_numbers),
+        "4" => merge_sort::main(&mut input_numbers),
+        "5" => quick_sort::main(&mut input_numbers),
         _ => panic!("Something went wrong"),
     };
     println!("");
@@ -28,6 +30,7 @@ fn get_sort_type_selection() -> String {
     println!("2. selection sort");
     println!("3. insertion sort");
     println!("4. merge sort");
+    println!("5. quick sort");
     io::stdin()
         .read_line(&mut sort_type)
         .expect("Something went wrong taking input");
